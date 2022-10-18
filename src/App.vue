@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form class="card" @submit.prevent="submit">
+    <!-- <form class="card" @submit.prevent="submit">
       <h1>Auth</h1>
 
       <h3 v-if="error">{{error}}</h3>
@@ -28,45 +28,46 @@
       <template #fallback>
         <div class="loader"></div>
       </template>
-    </Suspense>
+    </Suspense> -->
   </div>
 
 </template>
 
 <script>
-import {ref, onErrorCaptured} from 'vue'
+// onErrorCaptured
+import {ref } from 'vue'
 import UsersList from './components/UsersList'
-import {useForm} from './use/form'
+// import {useForm} from './use/form'
 
-const required = val => !!val
-const minLength = num => val => val.length >= num
+// const required = val => !!val
+// const minLength = num => val => val.length >= num
 
 export default {
   setup() {
-    const submitted = ref(false)
-    const error = ref()
-    const form = useForm({
-      email: {
-        value: '',
-        validators: {required}
-      },
-      password: {
-        value: '',
-        validators: {required, minLength: minLength(8)}
-      }
-    })
+    const submitted = ref<Boolean>(false)
+    const error = ref<String>('')
+    // const form = useForm({
+    //   email: {
+    //     value: '',
+    //     validators: {required}
+    //   },
+    //   password: {
+    //     value: '',
+    //     validators: {required, minLength: minLength(8)}
+    //   }
+    // })
 
-    function submit() {
-      console.log('Email:', form.email.value)
-      console.log('Password:', form.password.value)
-      submitted.value = true
-    }
+    // function submit() {
+    //   console.log('Email:', form.email.value)
+    //   console.log('Password:', form.password.value)
+    //   submitted.value = true
+    // }
 
-    onErrorCaptured(e => {
-      error.value = e.message
-    })
+    // onErrorCaptured(e => {
+    //   error.value = e.message
+    // })
 
-    return {form, submit, submitted, error}
+    // return {form, submit, submitted, error}
   },
   components: {UsersList}
 }
